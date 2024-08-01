@@ -67,4 +67,19 @@ class Stack {
   }
 }
 
+function reverseString(word) {
+  let wordStack = new Stack();
+  for (letter of word) {
+    wordStack.push(letter);
+  }
+  let reversedString = "";
+  while (!wordStack.isEmpty()) {
+    reversedString = reversedString.concat(wordStack.pop());
+  }
+  return reversedString;
+}
+
+console.log(reverseString('cat'));
+console.log(reverseString('abcdefg'));
+
 module.exports = Stack;
