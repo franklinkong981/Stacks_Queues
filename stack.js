@@ -82,4 +82,32 @@ function reverseString(word) {
 console.log(reverseString('cat'));
 console.log(reverseString('abcdefg'));
 
+const BRACKETS_KEY = {')': '(', '}': '{', ']': '['};
+
+function areBracketsBalanced(word) {
+  let bracketsStack = new Stack();
+  for (letter of word) {
+    if (letter == '(' || letter == '[' || letter == '{') {
+      bracketsStack.push(letter);
+    }
+
+    if (letter in BRACKETS_KEY && bracketsStack.isEmpty()) {
+      return false;
+    }
+    else if (letter in BRACKETS_KEY && bracketsStack.pop() != BRACKETS_KEY[letter]) {
+      return false;
+    }
+  }
+  return bracketsStack.isEmpty();
+}
+
+console.log(areBracketsBalanced("hello"));
+console.log(areBracketsBalanced("(hi) [there]"));
+console.log(areBracketsBalanced("(hi [there])"));
+console.log(areBracketsBalanced("(((hi)))"));
+console.log(areBracketsBalanced("(hello"));
+console.log(areBracketsBalanced("(nope]"));
+console.log(areBracketsBalanced("((ok) [nope)]"));
+
+
 module.exports = Stack;
